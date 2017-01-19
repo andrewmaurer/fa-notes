@@ -1,0 +1,444 @@
+
+\documentclass[12pt]{report}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package and document formatting stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath,amsthm,amsfonts,amscd,amssymb,mathabx}
+\usepackage{makeidx,enumerate}
+
+\usepackage{fullpage,color}
+\usepackage[pdfstartview=FitH,
+%             pdfauthor={\myauthor},
+%             pdftitle={\mytitle},
+            colorlinks,
+            linkcolor=reference,
+            citecolor=citation,
+            urlcolor=e-mail,
+            backref]{hyperref}
+\usepackage[all]{xy}
+
+\definecolor{todo}{rgb}{.80,.20,.20}
+\definecolor{e-mail}{rgb}{0,.40,.80}
+\definecolor{reference}{rgb}{.10,.40,.42}
+\definecolor{mrnumber}{rgb}{.80,.40,0}
+\definecolor{citation}{rgb}{0,.40,.80}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% theorem stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{deflem}[thm]{Definition/Lemma}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{aside}[thm]{Aside}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{facts}[thm]{Facts}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{prop}[thm]{Proposition}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% typography stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\mb}[1]{\mathbf #1}
+\newcommand{\mbb}[1]{\mathbb #1}
+\newcommand{\mf}[1]{\mathfrak #1}
+\newcommand{\mc}[1]{\mathcal #1}
+\newcommand{\ms}[1]{\mathscr #1}
+\newcommand{\mcu}[1]{\mathcu #1}
+\newcommand{\oper}[1]{\operatorname{#1}}
+
+\newcommand{\da}{\downarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\hra}{\hookrightarrow}
+\newcommand{\dra}{\dashrightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\lra}{\longrightarrow}
+
+\newcommand{\ov}{\overline}
+\newcommand{\til}{\widetilde}
+\newcommand{\wh}{\widehat}
+
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\newcommand{\ann}{\oper{ann}}
+\newcommand{\coker}{\oper{coker}}
+\newcommand{\End}{\oper{End}}
+\newcommand{\Aut}{\oper{Aut}}
+\newcommand{\Stab}{\oper{Stab}}
+
+\newcommand{\ind}{\oper{ind}}
+\newcommand{\per}{\oper{per}}
+\newcommand{\cores}{\oper{cor}}
+
+\newcommand{\Br}{\oper{Br}}
+\newcommand{\quat}[3]{
+  \left(\begin{matrix} #1, #2 \\ #3
+  \end{matrix}\right)
+}
+\newcommand{\symb}[3]{
+  \left(#1, #2\right)_{#3}
+}
+
+\newcommand{\lcm}{\oper{lcm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% other stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeindex
+\newcommand{\X}[1]{#1\index{#1}}
+\newcommand{\Xb}[1]{\textbf{#1}\index{#1}}
+
+\newcommand{\todo}[1]{\textcolor{todo}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% end preamble 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% title stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\author{Daniel Krashen}
+\title{Field Arithemtic Notes}
+
+\maketitle
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% document stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Philosophy}
+
+Fields are important due to their ubiquity. While they arise in a number of
+different contexts in different branches of mathematics, field theory gives
+us a coherent set of tools in which to view structural properties.
+
+It is fair to say that field theory is very much a work in progress. While
+the arithmetic of the rational numbers and number fields more generally, is
+a rich and exciting field, using a broad spectrum of techniques from
+algebra, analysis, and even topology, the study of more general fields
+raises many questions of a more foundational nature, as we try to
+generalize many strategies and concepts which one can take for granted in
+the case of number fields. The primary source for fields are
+\begin{enumerate}
+\item function fields of varieties
+\item finitely generated fields, coming from number theory
+\item fields of meromorphic functions on analytic manifolds
+\end{enumerate}
+In addition, a rich source of (slightly more technical) examples, are
+fields constructed by taking inductive limits of other fields. Such
+constructions play an important role in producing counterexamples, and in
+intermediate steps in arguments -- often, and somewhat counterintuitively,
+fields may become structurally simpler as they get larger (consider
+$\mathbb C$ versus $\mathbb Q$).
+
+For various classes of fields, some examples of fundamental questions which
+would like to understand are as follows (followed by some names of formal
+ideas we will use to address them):
+\begin{itemize}
+\item what geometric/topological notions of ``size'' or ``closeness'' make
+sense? 
+
+(\textbf{valuations and completions})
+
+\item what notions of dimension do we have? 
+
+(\textbf{cohomological
+dimension, Diophantine dimension, Brauer dimension, transcendence degrees,
+$p$-bases, ...})
+
+\item can we make sense of positivity? How many ways can we make sense of
+this notion? 
+
+(\textbf{real orderings and the Harrison topology})
+
+\item what kinds of structural constraints do Galois groups have?
+
+(\textbf{the inverse Galois problem})
+
+\item To what extent can we concretely describe how Galois extensions are
+constructed (for example, with a given group $G$)? What about other
+specific types of field extensions? 
+
+(\textbf{generic Galois theory})
+
+\item When can we interpret elements of fields as (rational) functions on a
+variety/space? 
+
+(\textbf{Grothendieck's Anabelian conjectures})
+\end{itemize}
+
+From another perspective, a very important tool in studying a field, is to
+consider the behaviour of algebraic objects over that field, such as
+algebras, quadratic forms, algebraic varieties, etcetera. The behaviour of
+such objects tells us a great deal about what the arithmetic of the field
+is like. Philosophically, one can think of the utility of this point of
+view in the following way: as mathematicians, a basic starting point is to
+ask the question ``given a collection of polynomial equations, with
+coefficients in my field $F$, can I find a solution in $F$?'' Which
+equations do and which equations don't have solutions represents a crucial
+kind of information about the field. As evidence for this, consider that
+the foundational notion of a field extension is based on the procedure of
+formally adjoining a solution to a single polynomial equation in one
+variable. On the other hand, there are a great deal of polynomials
+equations in the world, and if we consider arbitrary collections of such
+things, it is (in my own opinion) a bit too much for our limited minds to
+handle. For this reason, it makes sense to consider systems of equations
+for which we can assign strong conceptual meaning to their solutions. A
+source for such systems of equations of primary importance turns out to be
+algebraic objects: for example we might consider a system of equations for
+which a solution represents a zerodivisor in an algebra, an ideal in an
+algebra, or a subspace of a vector space on which some quadratic form
+vanishes.
+
+A huge benefit of this perspective is the fact that these algebraic
+structures come with new rich sets of tools which can therefore be
+leveraged to understand the field's arithmetic. That is to say, by
+reinterpreting various problems in field arithmetic in terms of algebraic
+structures, we are able to leverage our understanding of these algebraic
+structures to get new information. We will see various examples of this:
+certain noncommutative algebras will give us ways to discuss
+relations between cyclic extensions, and quadratic forms will give us a
+perspective on a surprisingly wide array of arithmetic questions.
+
+Further, as we will see later, the Galois cohomology groups (which play a
+role for a field which is in some sense analogous to the singular
+cohomology groups of a topological space) give rise to a rich collection of
+both field invariants, as well as invariants of algebraic structures. This
+additional connection has been crucial in recent developments in field
+theory, most notably in the proof of the Milnor conjecture by Voevodsky, as
+well as the establishmenent of the Norm Residue Isomorphism Theorem (the
+Bloch-Kato conjecture) by Voevodsky, Rost, Weibel, Suslin, Joukhovitski,
+and others.
+
+From a related perspective, instead of looking at systems of equations
+whose solutions have these natural interpretation, one might also consider
+systems of equations that are at least simple to write down. The most
+obvious of these are those given by a single homogeneous polynomial. The
+study of when these have nontrivial solutions is the topic of Tsen-Lang
+theory, of the so-called $C_i$-property, and is encapsulated in the notion
+of ``Diophantine Dimension.''
+
+\bigskip
+
+The object of these notes is to give, after a brief refresher of field
+theory, a guide to these topics, with a particular eye towards Galois
+cohomology.
+
+\chapter{Basics}
+
+\section{Some useful algebraic structures}
+
+\begin{defn}
+Monoid
+\end{defn}
+
+\begin{defn}
+Cancellative Monoid
+\end{defn}
+
+\begin{defn}
+Group
+\end{defn}
+
+\begin{defn}
+Ring
+\end{defn}
+
+\begin{defn}
+Commutative Integral Domain
+\end{defn}
+
+\begin{defn}
+Field
+\end{defn}
+
+\section{Fields}
+
+\begin{defn}
+A prime field is a field which contains no proper subfields.
+\end{defn}
+
+\begin{prop}
+The only prime fields are $\mathbb F_p = \mathbb Z/p \mathbb Z$ for $p$ a
+prime number, and $\mathbb Q$.
+\end{prop}
+\begin{proof}
+Consider the (unique) homomorphism $\mathbb Z \to F$.
+\end{proof}
+
+\begin{defn}
+The characteristic of a field is nonnegative generator of the kernel of the
+map $\mathbb Z \to F$.
+\end{defn}
+
+\begin{defn}
+If $F$ is a subfield of $L$, we say that $L$ is a field extension of $F$
+and write $L/F$.
+\end{defn}
+
+\begin{defn}
+Simple extension
+\end{defn}
+
+\begin{defn}
+Splitting field
+\end{defn}
+
+\begin{lem}
+Dedekind Lemma and corollary
+\end{lem}
+
+\begin{defn}
+Normality ( = splitting field)
+\end{defn}
+
+\begin{defn}
+separability (and derivatives)
+\end{defn}
+
+\begin{defn}
+Galois extensions:
+\begin{itemize}
+\item normal + separable
+\item num auts = degree
+\item $(E, G, 1)$ iso to $Hom_F(E, E)$
+\end{itemize}
+\end{defn}
+
+\begin{thm}
+Galois correspondence
+\end{thm}
+
+\section{Infinite things}
+
+\begin{defn}
+Inductive limits = direct limits $\subset$ colimits
+\end{defn}
+
+\begin{defn}
+inverse limits = projective limits $\subset$ limits
+\end{defn}
+
+Inverse limits come with natural ``topologies'' in many situations.
+
+Direct limits can inheret topologies.
+
+
+
+\section{Tensor producs}
+
+\begin{defn}
+Let $V$ and $W$ be $F$-vector spaces. The tensor product $V \otimes W = V
+\otimes_F W$ is the vector space generated by all symbols of the form $v
+\otimes w$, subject to the relations
+\begin{enumerate}
+\item $\lambda (v \otimes w) = \lambda v \otimes w = v \otimes \lambda w$
+for $\lambda \in F$, $v, w \in V$
+\item $(v + v') \otimes w = v \otimes w + v' \otimes w$ for $v, v', w \in
+V$
+\item $v \otimes (w + w') = v \otimes w + v \otimes w'$ for $v, w, w' \in
+V$
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+Suppose that $V$ and $W$ are vector spaces with bases $\{v_i\}_{i \in I}$
+and $\{w_j\}_{j \in J}$ respectively. Then $V \otimes_F W$ has a basis given
+by $\{v_i \otimes w_j\}_{(i, j) \in I \times J}$. In particular, if $V$ and
+$W$ are finite dimensional, then $\dim_F(V \otimes_F W) = (\dim_F V)(\dim_F
+W)$.
+\end{prop}
+\begin{proof}
+Consider the maps $f_k : V \otimes W \to W$ and $g_\ell: V \otimes W \to V$
+given by 
+\[f_k(\sum_{i,j} v_i \otimes w_j) = \sum  \]
+\end{proof}
+
+\begin{defn}
+Let $F$ be a field. An (associative, unital) $F$-algebra is a $F$-vector
+space $A$, together with a multiplication $A$
+\end{defn}
+
+
+
+
+\iffalse
+
+\subsection{Modules and bimodules}
+
+\begin{defn}
+Let $R$ be a ring. A left $R$-module is a set $M$ together with a binary
+operation
+\begin{align*}
+R \times M &\to M \\
+(r, m) &\to rm
+\end{align*}
+such that
+\begin{enumerate}[1. ]
+\item $1 m = m$, 
+\item $(r_1 r_2) m = r_1 (r_2 m)$, 
+\item $(r_1 + r_2)m = r_1m + r_2 m$
+\item $r(m_1 + m_2) = rm_1 + rm_2$
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+Let $R$ be a ring. A right $R$-module is a set $M$ together with a binary
+operation
+\begin{align*}
+M \times R &\to M \\
+(m, r) &\to mr
+\end{align*}
+such that
+\begin{enumerate}[1. ]
+\item $m 1 = m$, 
+\item $m (r_1 r_2) = (m r_1) r2$, 
+\item $m (r_1 + r_2)m = m r_1 + m r_2$
+\item $(m_1 + m_2)r = m_1 r + m_2 r$
+\end{enumerate}
+\end{defn}
+
+\begin{notn}
+We will occasionally write $M_R$ (respectively $_R M$) to denote the fact
+that $M$ is a right (respectively left) $R$-module.
+\end{notn}
+
+\begin{rem}
+Recall that for a ring $R$, we may define its opposite $R^{op}$ as the ring
+with the same underlying set and addition, but with the new multiplication
+rule $\cdot$ defined by $r \cdot s = sr$. In this way, we see
+that if $M$ is a left $R$ module, then we may define the structure of a
+right $R^{op}$ module on $M$ via $m \cdot r = rm$. This gives an
+equivalence of categories between left (right) $R$-modules and right (left)
+$R^{op}$ modules.
+\end{rem}
+
+\begin{defn}
+Let $R, S$ be rings. An $R-S$ \X{bimodule} is a set $M$ endowed with a left
+$R$-module structure and a right $S$-module structure such that for all $r
+\in R, s \in S, m \in M$, we have
+\[ r(m s) = (r m) s.\]
+\end{defn}
+\fi
+
+%\bibliographystyle{alpha}
+%\bibliography{citations}
+\printindex
+
+\end{document}
